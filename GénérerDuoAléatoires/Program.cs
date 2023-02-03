@@ -1,71 +1,46 @@
 ﻿List<string> students = new List<string>() { "Romain", "Solène", "Raph", "Laeticia", "Claire", "Vincent", "Willy", "Arnaud", "Corentin", "Charlie", "Sammy", "Yannick" };
+List<List<string>> lists = new List<List<string>>();
 const int listNb = 6;
-List<string> Salle1 = new List<string>();
-List<string> Salle2 = new List<string>();
-List<string> Salle3 = new List<string>();
-List<string> Salle4 = new List<string>();
-List<string> Salle5 = new List<string>();
-List<string> Salle6 = new List<string>();
+
 Random random = new Random();
-int index;
+int index; // Nombre aléatoire entre 0 et students.Count
 
-while (students.Count > 0)
-{
-    index = random.Next(students.Count);
-    Salle1.Add(students[index]);
-    students.RemoveAt(index);
-    
-    index = random.Next(students.Count);
-    Salle2.Add(students[index]);
-    students.RemoveAt(index);
-    
-    index = random.Next(students.Count);
-    Salle3.Add(students[index]);
-    students.RemoveAt(index);
-    
-    index = random.Next(students.Count);
-    Salle4.Add(students[index]);
-    students.RemoveAt(index);
-    
-    index = random.Next(students.Count);
-    Salle5.Add(students[index]);
-    students.RemoveAt(index);
-    
-    index = random.Next(students.Count);
-    Salle6.Add(students[index]);
-    students.RemoveAt(index);
-}
-foreach (var student in Salle1)
-{
+CreateListsInlists(); // Créer les listes dans la liste lists
+FillListsWithTwoRandomElements(); // Remplir les listes avec 2 éléments aléatoires
+DisplayListsContents(); // Affiche le contenu de chaque liste
 
-    Console.WriteLine("Salle 1 :" + student);
-}
-foreach (var student in Salle2)
+void CreateListsInlists()
 {
-
-    Console.WriteLine("Salle 2 :" + student);
-}
-foreach (var student in Salle3)
-{
-
-    Console.WriteLine("Salle 3 :" + student);
-}
-foreach (var student in Salle4)
-{
-
-    Console.WriteLine("Salle 4 :" + student);
-}
-foreach (var student in Salle5)
-{
-
-    Console.WriteLine("Salle 5 :" + student);
-}
-foreach (var student in Salle6)
-{
-
-    Console.WriteLine("Salle 6 :" + student);
+    {
+        for (int i = 0; i < listNb; i++)
+        {
+            lists.Add(new List<string>());
+        }
+    }
 }
 
-List<string>
+void FillListsWithTwoRandomElements()
+{
+    for (int i = 0; i < lists.Count; i++)
+    {
+        while (lists[i].Count < 2)
+        {
+            index = random.Next(0, students.Count);
 
+            if (!lists[i].Contains(students[index]))
+            {
+                lists[i].Add(students[index]);
+                students.Remove(students[index]);
+            }
+        }
+    }
+}
+
+void DisplayListsContents()
+{
+    for (int i = 0; i < listNb; i++)
+    {
+        Console.WriteLine("List {0}: {1}", i + 1, string.Join(", ", lists[i]));
+    }
+}
 
