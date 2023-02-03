@@ -66,6 +66,4 @@ foreach (var student in Salle6)
     Console.WriteLine("Salle 6 :" + student);
 }
 
-List<string>
-
 
