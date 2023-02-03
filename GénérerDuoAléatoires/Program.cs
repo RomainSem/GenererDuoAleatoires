@@ -21,6 +21,7 @@ void CreateListsInlists()
     }
 }
 
+
 void FillListsWithTwoRandomElements()
 {
     for (int i = 0; i < groups.Count; i++)
@@ -43,4 +44,5 @@ void DisplayListsContents()
         Console.WriteLine("Group {0} : {1} ", i + 1, string.Join(", ", groups[i]));
     }
 }
+
 
